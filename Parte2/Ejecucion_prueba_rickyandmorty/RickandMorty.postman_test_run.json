@@ -1,0 +1,353 @@
+{
+	"id": "1c705a8e-ab93-4a3d-802c-5d0e84c5fc7e",
+	"name": "RickandMorty",
+	"timestamp": "2022-09-29T16:03:48.780Z",
+	"collection_id": "0-03a0aeef-2c89-401f-8762-afab601b9140",
+	"folder_id": 0,
+	"environment_id": "c31ea965-7f58-4d21-8d32-208292319e3e",
+	"totalPass": 24,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "76a9c189-e5c9-4478-8f53-22dcebfab7e5",
+			"name": "Solicitar Listado de todos los personajes",
+			"url": "https://rickandmortyapi.com/api/character/",
+			"time": 91,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Body matches string": true,
+				"Validate schema": true,
+				"validar el genero": true
+			},
+			"testPassFailCounts": {
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Validate schema": {
+					"pass": 1,
+					"fail": 0
+				},
+				"validar el genero": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				91
+			],
+			"allTests": [
+				{
+					"Body matches string": true,
+					"Validate schema": true,
+					"validar el genero": true
+				}
+			]
+		},
+		{
+			"id": "cbe7f0bb-3a5f-4312-b4d3-8942e2cf795a",
+			"name": "Obtener listado personajes por Pagina",
+			"url": "https://rickandmortyapi.com/api/character/?page=12",
+			"time": 88,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Body is correct": true,
+				"Status code is 200": true,
+				"Response time is less than 500ms": true
+			},
+			"testPassFailCounts": {
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 500ms": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				88
+			],
+			"allTests": [
+				{
+					"Body is correct": true,
+					"Status code is 200": true,
+					"Response time is less than 500ms": true
+				}
+			]
+		},
+		{
+			"id": "451b3690-b554-4379-9891-eefe9ddcd559",
+			"name": "Obtener un personaje por Id",
+			"url": "https://rickandmortyapi.com/api/character/11",
+			"time": 82,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Validamos Id": true,
+				"Body is correct": true,
+				"Status code is 200": true,
+				"Valindando existencia Id": true
+			},
+			"testPassFailCounts": {
+				"Validamos Id": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Valindando existencia Id": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				82
+			],
+			"allTests": [
+				{
+					"Validamos Id": true,
+					"Body is correct": true,
+					"Status code is 200": true,
+					"Valindando existencia Id": true
+				}
+			]
+		},
+		{
+			"id": "e152922d-4c7c-4eb2-adc1-e26cc8ac8303",
+			"name": "Obtener Multiples personajes por Id",
+			"url": "https://rickandmortyapi.com/api/character/[2,6,9]",
+			"time": 104,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Content-Type is present": true,
+				"Response time is less than 200ms": true,
+				"validar id": true,
+				"Your test name": true,
+				"validar que el id coincida con el nombre": true
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"validar id": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Your test name": {
+					"pass": 1,
+					"fail": 0
+				},
+				"validar que el id coincida con el nombre": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				104
+			],
+			"allTests": [
+				{
+					"Content-Type is present": true,
+					"Response time is less than 200ms": true,
+					"validar id": true,
+					"Your test name": true,
+					"validar que el id coincida con el nombre": true
+				}
+			]
+		},
+		{
+			"id": "c5b98cbe-e66b-453e-838a-3134ba4621e0",
+			"name": "Ingresar id de multiples personages no existentes",
+			"url": "https://rickandmortyapi.com/api/character/830,831",
+			"time": 169,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response time is less than 300ms": true,
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Response time is less than 300ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				169
+			],
+			"allTests": [
+				{
+					"Response time is less than 300ms": true,
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "10ceaaee-b9bf-4e74-b3a6-d4a1bcf5978c",
+			"name": "Ingresar id con caracter",
+			"url": "https://rickandmortyapi.com/api/character/p",
+			"time": 179,
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error"
+			},
+			"tests": {
+				"Status code name has string": true,
+				"Status code is 500": true,
+				"Response time is less than 600ms": true
+			},
+			"testPassFailCounts": {
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 500": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 600ms": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				179
+			],
+			"allTests": [
+				{
+					"Status code name has string": true,
+					"Status code is 500": true,
+					"Response time is less than 600ms": true
+				}
+			]
+		},
+		{
+			"id": "f121c018-64bf-4b42-bf19-3408f7f39726",
+			"name": "Obtener multiples personages con carateres",
+			"url": "https://rickandmortyapi.com/api/character/[2,t,9]",
+			"time": 212,
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error"
+			},
+			"tests": {
+				"Status code is 500": true,
+				"Response time is less than 600ms": true,
+				"Status code name has string": true
+			},
+			"testPassFailCounts": {
+				"Status code is 500": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 600ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				212
+			],
+			"allTests": [
+				{
+					"Status code is 500": true,
+					"Response time is less than 600ms": true,
+					"Status code name has string": true
+				}
+			]
+		},
+		{
+			"id": "3d188370-610d-4815-b4e0-dddb2a32fa20",
+			"name": "obtener personajes con estado alive",
+			"url": "https://rickandmortyapi.com/api/character/?status=alive",
+			"time": 82,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				82
+			],
+			"allTests": [
+				{}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 1007,
+	"collection": {
+		"requests": [
+			{
+				"id": "76a9c189-e5c9-4478-8f53-22dcebfab7e5",
+				"method": "GET"
+			},
+			{
+				"id": "cbe7f0bb-3a5f-4312-b4d3-8942e2cf795a",
+				"method": "GET"
+			},
+			{
+				"id": "451b3690-b554-4379-9891-eefe9ddcd559",
+				"method": "GET"
+			},
+			{
+				"id": "e152922d-4c7c-4eb2-adc1-e26cc8ac8303",
+				"method": "GET"
+			},
+			{
+				"id": "c5b98cbe-e66b-453e-838a-3134ba4621e0",
+				"method": "GET"
+			},
+			{
+				"id": "10ceaaee-b9bf-4e74-b3a6-d4a1bcf5978c",
+				"method": "GET"
+			},
+			{
+				"id": "f121c018-64bf-4b42-bf19-3408f7f39726",
+				"method": "GET"
+			},
+			{
+				"id": "3d188370-610d-4815-b4e0-dddb2a32fa20",
+				"method": "GET"
+			}
+		]
+	}
+}

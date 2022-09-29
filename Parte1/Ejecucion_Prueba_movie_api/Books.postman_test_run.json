@@ -1,0 +1,675 @@
+{
+	"id": "9c3592d1-2f72-4f0f-b63c-b9032673bacd",
+	"name": "Books",
+	"timestamp": "2022-09-29T16:35:32.314Z",
+	"collection_id": "0-3cad2554-652d-48a7-8fe9-b5e555714b93",
+	"folder_id": 0,
+	"environment_id": "e8718614-9a20-4f7c-96bd-304dec1bfbd4",
+	"totalPass": 38,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "10f13b2f-1968-4892-91ed-8f2ab035ea27",
+			"name": "Registro cliente",
+			"url": "https://simple-books-api.glitch.me/api-clients/",
+			"time": 220,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Validate schema": true,
+				"Status code is 201": true,
+				"Status code name has string": true
+			},
+			"testPassFailCounts": {
+				"Validate schema": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				220
+			],
+			"allTests": [
+				{
+					"Validate schema": true,
+					"Status code is 201": true,
+					"Status code name has string": true
+				}
+			]
+		},
+		{
+			"id": "ec961e3b-cc7c-4e4a-ae7c-5ffd4271b8cd",
+			"name": "Obtener listado de libros",
+			"url": "https://simple-books-api.glitch.me/books/",
+			"time": 114,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Titulo de la pelicula con id coincide con el nombre": true,
+				"Status code is 200": true,
+				"Titulo de la pelicula con id  coincide con el nombre": true
+			},
+			"testPassFailCounts": {
+				"Titulo de la pelicula con id coincide con el nombre": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Titulo de la pelicula con id  coincide con el nombre": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				114
+			],
+			"allTests": [
+				{
+					"Titulo de la pelicula con id coincide con el nombre": true,
+					"Status code is 200": true,
+					"Titulo de la pelicula con id  coincide con el nombre": true
+				}
+			]
+		},
+		{
+			"id": "72803f1c-ec7e-4442-b76c-bedca40665e9",
+			"name": "Obtener libros disponibles",
+			"url": "https://simple-books-api.glitch.me/books/",
+			"time": 100,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Titulo de la pelicula con id '3' coincide con el nombre": true
+			},
+			"testPassFailCounts": {
+				"Titulo de la pelicula con id '3' coincide con el nombre": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				100
+			],
+			"allTests": [
+				{
+					"Titulo de la pelicula con id '3' coincide con el nombre": true
+				}
+			]
+		},
+		{
+			"id": "fe8ccf9f-7acc-4434-89d5-5a690d13e870",
+			"name": "Obtener libro por Id",
+			"url": "https://simple-books-api.glitch.me/books/2",
+			"time": 106,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Valindando la existencia del id:2": true,
+				"Validate schema": true,
+				"Status code is 200": true,
+				"Body matches string": true,
+				"Valindando existencia Id": true
+			},
+			"testPassFailCounts": {
+				"Valindando la existencia del id:2": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Validate schema": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Valindando existencia Id": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				106
+			],
+			"allTests": [
+				{
+					"Valindando la existencia del id:2": true,
+					"Validate schema": true,
+					"Status code is 200": true,
+					"Body matches string": true,
+					"Valindando existencia Id": true
+				}
+			]
+		},
+		{
+			"id": "5b53e64a-46d5-4b22-be6e-e33099f07a68",
+			"name": "Solicitar libro por Id no existente",
+			"url": "https://simple-books-api.glitch.me/books/77",
+			"time": 101,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status code is 404": true,
+				"Valindando existencia Id": true,
+				"Response time is less than 200ms": true,
+				"El codigo de respuesta tieene como nombre": true
+			},
+			"testPassFailCounts": {
+				"Status code is 404": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Valindando existencia Id": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"El codigo de respuesta tieene como nombre": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				101
+			],
+			"allTests": [
+				{
+					"Status code is 404": true,
+					"Valindando existencia Id": true,
+					"Response time is less than 200ms": true,
+					"El codigo de respuesta tieene como nombre": true
+				}
+			]
+		},
+		{
+			"id": "8c897589-7383-47fe-9f75-18f2707c539b",
+			"name": "enviar pedido",
+			"url": "https://simple-books-api.glitch.me/orders/",
+			"time": 129,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Validate schema": true,
+				"Status code is 201": true,
+				"Response time is less than 400ms": true,
+				"el nombre de respuesta del codigo es creado": true
+			},
+			"testPassFailCounts": {
+				"Validate schema": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 400ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"el nombre de respuesta del codigo es creado": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				129
+			],
+			"allTests": [
+				{
+					"Validate schema": true,
+					"Status code is 201": true,
+					"Response time is less than 400ms": true,
+					"el nombre de respuesta del codigo es creado": true
+				}
+			]
+		},
+		{
+			"id": "2bacddd9-6a8f-469b-91b6-7747fd4176c2",
+			"name": "Obtener todos los pedidos",
+			"url": "https://simple-books-api.glitch.me/orders/",
+			"time": 197,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Validad que el id coincida con nombre": true,
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Validad que el id coincida con nombre": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				197
+			],
+			"allTests": [
+				{
+					"Validad que el id coincida con nombre": true,
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "288b5492-1098-47dc-ad13-a404b3d1e375",
+			"name": "Obtener un pedido",
+			"url": "https://simple-books-api.glitch.me/orders/Z-9V2A0XBVHeu8vkWkokA",
+			"time": 108,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Validando el id del pedido": true,
+				"Verificando que el pedido fue realizado por Carolina": true,
+				"Status code is 200": true,
+				"Valindando existencia Id": true
+			},
+			"testPassFailCounts": {
+				"Validando el id del pedido": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verificando que el pedido fue realizado por Carolina": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Valindando existencia Id": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				108
+			],
+			"allTests": [
+				{
+					"Validando el id del pedido": true,
+					"Verificando que el pedido fue realizado por Carolina": true,
+					"Status code is 200": true,
+					"Valindando existencia Id": true
+				}
+			]
+		},
+		{
+			"id": "ed1673e0-d683-4612-850d-16ba17deb9b3",
+			"name": "Actualizaar un pedido",
+			"url": "https://simple-books-api.glitch.me/orders/Z-9V2A0XBVHeu8vkWkokA",
+			"time": 126,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {
+				"Status code is 204": true,
+				"Response time is less than 400ms": true,
+				"Status code name has string": true
+			},
+			"testPassFailCounts": {
+				"Status code is 204": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 400ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				126
+			],
+			"allTests": [
+				{
+					"Status code is 204": true,
+					"Response time is less than 400ms": true,
+					"Status code name has string": true
+				}
+			]
+		},
+		{
+			"id": "f8944e94-317d-4b94-b7f0-e5a9601f7627",
+			"name": "Eliminar pedido",
+			"url": "https://simple-books-api.glitch.me/orders/Z-9V2A0XBVHeu8vkWkokA",
+			"time": 285,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {
+				"Status code is 204": true,
+				"Status code name has string": true
+			},
+			"testPassFailCounts": {
+				"Status code is 204": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				285
+			],
+			"allTests": [
+				{
+					"Status code is 204": true,
+					"Status code name has string": true
+				}
+			]
+		},
+		{
+			"id": "85f2f9d8-5fe1-4823-b2f9-7887d97bc1b5",
+			"name": "Solicitar pedido a libro desabilitado",
+			"url": "https://simple-books-api.glitch.me/orders/",
+			"time": 148,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status code is 404": true,
+				"Response time is less than 300ms": true,
+				"Status code name has string": true
+			},
+			"testPassFailCounts": {
+				"Status code is 404": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 300ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				148
+			],
+			"allTests": [
+				{
+					"Status code is 404": true,
+					"Response time is less than 300ms": true,
+					"Status code name has string": true
+				}
+			]
+		},
+		{
+			"id": "ac20523c-a8ef-4e48-b475-547dde9068ef",
+			"name": "Registro cliente existente",
+			"url": "https://simple-books-api.glitch.me/api-clients/",
+			"time": 131,
+			"responseCode": {
+				"code": 409,
+				"name": "Conflict"
+			},
+			"tests": {
+				"Status code is 409": true,
+				"El nombre dle codigo tiene como nombre conflicto": true
+			},
+			"testPassFailCounts": {
+				"Status code is 409": {
+					"pass": 1,
+					"fail": 0
+				},
+				"El nombre dle codigo tiene como nombre conflicto": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				131
+			],
+			"allTests": [
+				{
+					"Status code is 409": true,
+					"El nombre dle codigo tiene como nombre conflicto": true
+				}
+			]
+		},
+		{
+			"id": "861a43a7-1794-4f6f-ac28-39cdf3d78769",
+			"name": "Obtener libros por tipo de ficcion",
+			"url": "https://simple-books-api.glitch.me/books/?type=fiction",
+			"time": 111,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"El libro tiene por tipo ": true
+			},
+			"testPassFailCounts": {
+				"El libro tiene por tipo ": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				111
+			],
+			"allTests": [
+				{
+					"El libro tiene por tipo ": true
+				}
+			]
+		},
+		{
+			"id": "f502d972-da9a-4c37-a17b-3464903506a4",
+			"name": "Obtener libro por Id no existente",
+			"url": "https://simple-books-api.glitch.me/books/222",
+			"time": 101,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				101
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "c6c15ccc-048e-417a-b7f4-e1b84d565cb8",
+			"name": "Obtener un pedido no existente",
+			"url": "https://simple-books-api.glitch.me/orders/88",
+			"time": 101,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				101
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "eb4aaea9-9c7c-4fff-84a8-9ff2c7eba405",
+			"name": "Eliminar pedido no existente",
+			"url": "https://simple-books-api.glitch.me/orders/4242fdsvxx",
+			"time": 149,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				149
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "8ac09cec-778b-4c22-951a-722716e43840",
+			"name": "Actualizar pedido no existente",
+			"url": "https://simple-books-api.glitch.me/orders/Z-9V2A0XBVHeu8vkWkokA",
+			"time": 108,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				108
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "eeddb59c-8d91-4e6f-8b09-4e0de107f63e",
+			"name": "Solicitar libro por Id con cararter",
+			"url": "https://simple-books-api.glitch.me/books/tk",
+			"time": 92,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				92
+			],
+			"allTests": [
+				{}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 2427,
+	"collection": {
+		"requests": [
+			{
+				"id": "10f13b2f-1968-4892-91ed-8f2ab035ea27",
+				"method": "POST"
+			},
+			{
+				"id": "ec961e3b-cc7c-4e4a-ae7c-5ffd4271b8cd",
+				"method": "GET"
+			},
+			{
+				"id": "72803f1c-ec7e-4442-b76c-bedca40665e9",
+				"method": "GET"
+			},
+			{
+				"id": "fe8ccf9f-7acc-4434-89d5-5a690d13e870",
+				"method": "GET"
+			},
+			{
+				"id": "5b53e64a-46d5-4b22-be6e-e33099f07a68",
+				"method": "GET"
+			},
+			{
+				"id": "8c897589-7383-47fe-9f75-18f2707c539b",
+				"method": "POST"
+			},
+			{
+				"id": "2bacddd9-6a8f-469b-91b6-7747fd4176c2",
+				"method": "GET"
+			},
+			{
+				"id": "288b5492-1098-47dc-ad13-a404b3d1e375",
+				"method": "GET"
+			},
+			{
+				"id": "ed1673e0-d683-4612-850d-16ba17deb9b3",
+				"method": "PATCH"
+			},
+			{
+				"id": "f8944e94-317d-4b94-b7f0-e5a9601f7627",
+				"method": "DELETE"
+			},
+			{
+				"id": "85f2f9d8-5fe1-4823-b2f9-7887d97bc1b5",
+				"method": "POST"
+			},
+			{
+				"id": "ac20523c-a8ef-4e48-b475-547dde9068ef",
+				"method": "POST"
+			},
+			{
+				"id": "861a43a7-1794-4f6f-ac28-39cdf3d78769",
+				"method": "GET"
+			},
+			{
+				"id": "f502d972-da9a-4c37-a17b-3464903506a4",
+				"method": "GET"
+			},
+			{
+				"id": "c6c15ccc-048e-417a-b7f4-e1b84d565cb8",
+				"method": "GET"
+			},
+			{
+				"id": "eb4aaea9-9c7c-4fff-84a8-9ff2c7eba405",
+				"method": "DELETE"
+			},
+			{
+				"id": "8ac09cec-778b-4c22-951a-722716e43840",
+				"method": "PATCH"
+			},
+			{
+				"id": "eeddb59c-8d91-4e6f-8b09-4e0de107f63e",
+				"method": "GET"
+			}
+		]
+	}
+}

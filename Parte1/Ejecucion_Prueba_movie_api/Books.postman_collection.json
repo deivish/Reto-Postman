@@ -1,0 +1,819 @@
+{
+	"info": {
+		"_postman_id": "3cad2554-652d-48a7-8fe9-b5e555714b93",
+		"name": "Books",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Registro cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var response=pm.response.json();\r",
+							"var tokenobtenido=response.accessToken\r",
+							"console.log(tokenobtenido)\r",
+							"pm.environment.set(\"token\", tokenobtenido);\r",
+							"\r",
+							"var schema = \r",
+							"{\r",
+							" \"items\": \r",
+							" {\r",
+							"     \"type\": \"object\",\r",
+							"     \"properties\":\r",
+							"     {\r",
+							"         \"accessToken\":{\"type\":\"number\"},\r",
+							"         \r",
+							"     }\r",
+							" }\r",
+							"};\r",
+							"\r",
+							"pm.test(\"Validate schema\", () => {\r",
+							"    pm.response.to.have.jsonSchema(schema);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"Created\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"UserCliente\",pm.variables.replaceIn(\"{{$randomFirstName}}\"))\r",
+							"pm.environment.set(\"EmailCliente\",pm.variables.replaceIn(\"{{$randomEmail}}\"))"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"clientName\": \"{{UserCliente}}\",\r\n   \"clientEmail\": \"{{EmailCliente}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Url_Base}}{{Registro}}",
+					"host": [
+						"{{Url_Base}}{{Registro}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener listado de libros",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Titulo de la pelicula con id coincide con el nombre\", \r",
+							"function ()\r",
+							" {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    var libro=jsonData.find(x => x.id == \r",
+							"    \"3\")\r",
+							"    pm.expect(libro.name).to.equal(\"The Vanishing Half\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Titulo de la pelicula con id  coincide con el nombre\", \r",
+							"function ()\r",
+							" {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    var libro=jsonData.find(x => x.available == \r",
+							"    \"true\")\r",
+							"    console.log(libro)\r",
+							"    \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Url_Base}}{{Libros}}",
+					"host": [
+						"{{Url_Base}}{{Libros}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener libros disponibles",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Titulo de la pelicula con id '3' coincide con el nombre\", \r",
+							"function ()\r",
+							" {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    var libro=jsonData.find(x => x.available == \r",
+							"    \"true\")\r",
+							"    console.log(libro)\r",
+							"    \r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Url_Base}}{{Libros}}",
+					"host": [
+						"{{Url_Base}}{{Libros}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener libro por Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Valindando la existencia del id:2\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(2);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"var schema = \r",
+							"{\r",
+							" \"items\": \r",
+							" {\r",
+							"     \"type\": \"object\",\r",
+							"     \"properties\":\r",
+							"     {\r",
+							"         \"id\":{\"type\":\"number\"},\r",
+							"         \"name\":{\"type\":\"string\"},\r",
+							"         \"author\":{\"type\":\"string\"},\r",
+							"         \"type\":{\"type\":\"string\"},\r",
+							"         \"current-stock\":{\"type\":\"number\"},\r",
+							"         \"available\":{\"type\":\"boolean\"}\r",
+							"     }\r",
+							" }\r",
+							"};\r",
+							"\r",
+							"pm.test(\"Validate schema\", () => {\r",
+							"    pm.response.to.have.jsonSchema(schema);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"fiction\");\r",
+							"});\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"const tieneId = Object.keys(response).includes('id');\r",
+							"\r",
+							"pm.test('Valindando existencia Id', () =>{\r",
+							"    pm.expect(true).to.be.eqls(tieneId);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Url_Base}}{{Libros}}2",
+					"host": [
+						"{{Url_Base}}{{Libros}}2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Solicitar libro por Id no existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"const tieneId = Object.keys(response).includes('id');\r",
+							"\r",
+							"pm.test('Valindando existencia Id', () =>{\r",
+							"    pm.expect(false).to.be.eqls(tieneId);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"El codigo de respuesta tieene como nombre\", function () {\r",
+							"    pm.response.to.have.status(\"Not Found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Url_Base}}{{Libros}}77",
+					"host": [
+						"{{Url_Base}}{{Libros}}77"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "enviar pedido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var response=pm.response.json();\r",
+							"var idobtenido=response.orderId\r",
+							"console.log(idobtenido)\r",
+							"pm.environment.set(\"Idpedido\", idobtenido);\r",
+							"\r",
+							"\r",
+							"var schema = \r",
+							"{\r",
+							" \"items\": \r",
+							" {\r",
+							"     \"type\": \"object\",\r",
+							"     \"properties\":\r",
+							"     {\r",
+							"         \"created\":{\"type\":\"boolean\"},\r",
+							"         \"orderId\":{\"type\":\"string\"},\r",
+							"         \r",
+							"     }\r",
+							" }\r",
+							"};\r",
+							"\r",
+							"pm.test(\"Validate schema\", () => {\r",
+							"    pm.response.to.have.jsonSchema(schema);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"el nombre de respuesta del codigo es creado\", function () {\r",
+							"    pm.response.to.have.status(\"Created\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"bookId\": 3,\r\n  \"customerName\": \"Carolina\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Url_Base}}{{Pedido}}",
+					"host": [
+						"{{Url_Base}}{{Pedido}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todos los pedidos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Validad que el id coincida con nombre\", \r",
+							"function ()\r",
+							" {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    var libro=jsonData.find(x => x.bookId == 3)\r",
+							"    pm.expect(libro.customerName).to.equal(\"Carolina\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Url_Base}}{{Pedido}}",
+					"host": [
+						"{{Url_Base}}{{Pedido}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un pedido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Validando el id del pedido\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.bookId).to.eql(3);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verificando que el pedido fue realizado por Carolina\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.customerName).to.eql(\"Carolina\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"const tieneId = Object.keys(response).includes('id');\r",
+							"\r",
+							"pm.test('Valindando existencia Id', () =>{\r",
+							"    pm.expect(true).to.be.eqls(tieneId);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Url_Base}}{{Pedido}}{{Idpedido}}",
+					"host": [
+						"{{Url_Base}}{{Pedido}}{{Idpedido}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizaar un pedido",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"No Content\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \r\n  \"customerName\": \"Sara\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Url_Base}}{{Pedido}}{{Idpedido}}",
+					"host": [
+						"{{Url_Base}}{{Pedido}}{{Idpedido}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar pedido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"No Content\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{Url_Base}}{{Pedido}}{{Idpedido}}",
+					"host": [
+						"{{Url_Base}}{{Pedido}}{{Idpedido}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Solicitar pedido a libro desabilitado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 300ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"Not Found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"bookId\": 2,\r\n  \"customerName\": \"Luis\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Url_Base}}{{Pedido}}",
+					"host": [
+						"{{Url_Base}}{{Pedido}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Registro cliente existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 409\", function () {\r",
+							"    pm.response.to.have.status(409);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"El nombre dle codigo tiene como nombre conflicto\", function () {\r",
+							"    pm.response.to.have.status(\"Conflict\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"clientName\": \"{{UserCliente}}\",\r\n   \"clientEmail\": \"{{EmailCliente}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Url_Base}}{{Registro}}",
+					"host": [
+						"{{Url_Base}}{{Registro}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener libros por tipo de ficcion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.json();\r",
+							"const statualive = response.filter((character) => character.type == 'fiction');\r",
+							"\r",
+							"const character = statualive[0];\r",
+							"pm.test('El libro tiene por tipo ', () =>{\r",
+							"    pm.expect(character).to.be.an('object');\r",
+							"    pm.expect(character.type).to.be.eql('fiction');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Url_Base}}{{Libros}}?type=fiction",
+					"host": [
+						"{{Url_Base}}{{Libros}}"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "fiction"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener libro por Id no existente",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Url_Base}}{{Libros}}222",
+					"host": [
+						"{{Url_Base}}{{Libros}}222"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un pedido no existente",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Url_Base}}{{Pedido}}88",
+					"host": [
+						"{{Url_Base}}{{Pedido}}88"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar pedido no existente",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{Url_Base}}{{Pedido}}4242fdsvxx",
+					"host": [
+						"{{Url_Base}}{{Pedido}}4242fdsvxx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar pedido no existente",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "{{Url_Base}}{{Pedido}}{{Idpedido}}",
+					"host": [
+						"{{Url_Base}}{{Pedido}}{{Idpedido}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Solicitar libro por Id con cararter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Url_Base}}{{Libros}}tk",
+					"host": [
+						"{{Url_Base}}{{Libros}}tk"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

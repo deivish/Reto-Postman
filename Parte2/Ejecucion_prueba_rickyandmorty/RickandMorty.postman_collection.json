@@ -1,0 +1,347 @@
+{
+	"info": {
+		"_postman_id": "03a0aeef-2c89-401f-8762-afab601b9140",
+		"name": "RickandMorty",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Solicitar Listado de todos los personajes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Morty Smith\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Female\");\r",
+							"});\r",
+							"\r",
+							"var schema = \r",
+							"{\r",
+							" \"items\": \r",
+							" {\r",
+							"     \"type\": \"object\",\r",
+							"     \"properties\":\r",
+							"     {\r",
+							"         \"id\":{\"type\":\"number\"},\r",
+							"         \"name\":{\"type\":\"string\"},\r",
+							"         \"status\":{\"type\":\"string\"},\r",
+							"         \"species\":{\"type\":\"string\"},\r",
+							"     }\r",
+							" }\r",
+							"};\r",
+							"\r",
+							"pm.test(\"Validate schema\", () => {\r",
+							"    pm.response.to.have.jsonSchema(schema);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"validar el genero\", \r",
+							"function ()\r",
+							" {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    var personaje=jsonData.results.find(x => x.id == \r",
+							"    \"1\")\r",
+							"    pm.expect(personaje.gender).to.equal(\"Male\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Url_Base}}{{List}}",
+					"host": [
+						"{{Url_Base}}{{List}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener listado personajes por Pagina",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Body is correct\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Monster\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Url_Base}}{{List}}{{Pagina}}12",
+					"host": [
+						"{{Url_Base}}{{List}}{{Pagina}}12"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un personaje por Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json()\r",
+							"pm.collectionVariables.set('PersonageId', jsonData.data)\r",
+							"\r",
+							"pm.test(\"Validamos Id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(11);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body is correct\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Albert Einstein\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"Dead\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"Human\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"const tieneId = Object.keys(response).includes('id');\r",
+							"\r",
+							"pm.test('Valindando existencia Id', () =>{\r",
+							"    pm.expect(true).to.be.eqls(tieneId);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Url_Base}}{{List}}11",
+					"host": [
+						"{{Url_Base}}{{List}}11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Multiples personajes por Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Server\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"validar id\", function(){\r",
+							"    var jsonData = pm.response.json();\r",
+							"    var response =jsonData.find(x => x.id == \r",
+							"    \"2\");\r",
+							"    pm.expect(response.species).to.equal(\"Human\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"});\r",
+							"\r",
+							"pm.test(\"validar que el id coincida con el nombre\", \r",
+							"function ()\r",
+							" {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    var personaje=jsonData.find(x => x.id == \r",
+							"    \"2\")\r",
+							"    pm.expect(personaje.name).to.equal(\"Morty Smith\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Url_Base}}{{List}}[2,6,9]",
+					"host": [
+						"{{Url_Base}}{{List}}[2,6,9]"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ingresar id de multiples personages no existentes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Response time is less than 300ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Url_Base}}{{List}}830,831",
+					"host": [
+						"{{Url_Base}}{{List}}830,831"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ingresar id con caracter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"Internal Server Error\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 500\", function () {\r",
+							"    pm.response.to.have.status(500);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 600ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Url_Base}}{{List}}p",
+					"host": [
+						"{{Url_Base}}{{List}}p"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener multiples personages con carateres",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 500\", function () {\r",
+							"    pm.response.to.have.status(500);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 600ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"Internal Server Error\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Url_Base}}{{List}}[2,t,9]",
+					"host": [
+						"{{Url_Base}}{{List}}[2,t,9]"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "obtener personajes con estado alive",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Url_Base}}{{List}}?status=alive",
+					"host": [
+						"{{Url_Base}}{{List}}"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "alive"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "PersonageId",
+			"value": ""
+		}
+	]
+}
